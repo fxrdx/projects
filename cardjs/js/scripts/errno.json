@@ -1,0 +1,19 @@
+{
+    "errno":{
+        "1048":{
+            "window":"alert",
+            "alert":"No puedes continuar, los campos aún no están completos",
+            "prompt":"revisa e intentalo de nuevo"
+         },
+         "2":{ 
+            "window":"alert",
+            "alert":"Ha ocurrido un error de duplicacion" ,
+            "prompt":"Descuida esto tiene arreglo, verifica que esta todo en orden e intenta de nuevo"
+         },
+        "0":{
+            "window":"alert",
+            "alert":"Success",
+            "prompt":""  
+         }
+    }
+}    

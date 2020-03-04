@@ -1,0 +1,16 @@
+{
+    "alert":{
+        "0":{
+            "txt":"La informacion del error ya fue enviada a nuestro laboratorio, para ayudarnos a solucionar deja un comentario acerca del error"
+        },
+        "0":{
+            "txt":"No comentaste, entendemos que no tienes tiempo, esperamos resolver tu inconveniente lo mas pronto posible"
+        },
+        "1":{ 
+            "txt":"Ok, entendemos que no tienes tiempo para comentar, esperamos resolver tu inconveniente lo mas pronto posible"
+        },
+        "2":{
+            "txt":"get method does not work, contact your network administrator"
+        }
+    }
+}    

@@ -1,0 +1,357 @@
+@media screen {
+    .picture-container {
+        position: relative;
+        width: 600px;
+        height: auto;
+        margin: 20px auto;
+        border: 10px solid #fff;
+        box-shadow: 0 5px 5px #000;
+    }
+    .picture {
+        display: block;
+        width: 100%;
+        height: auto;
+    }   
+    .face {
+        position: absolute;
+        border: 2px solid red;
+    }
+
+    .face-box {
+        border: 1px sólido #f00;
+        position: absoluta;
+    }
+
+    .centered {
+        padding: 5mm 0;
+        background-color: darkgrey;
+        width: 0;
+        margin-left: 50%;
+    }
+    .preview {
+        position: relative;
+        margin-left: -26.99mm;
+    }
+
+    /* carnet */
+    .carnet {
+        position: relative;
+        background-color: white;
+        height: 85.73mm;
+        width: 53.98mm;
+        padding: 0;
+        display: table-caption;
+        font-family: roboto, sans-serif;
+        line-height: 1;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+        border-radius: 2.5mm;
+
+    }
+    .ven {
+        position: absolute;
+        font-size: 6pt;
+        text-transform: uppercase;
+        font-weight: bolder;
+        text-align: right;
+        transform: rotate(270deg);
+        left: 38mm;
+        width: 100px;
+        margin-top: 60px;
+        padding: 0;
+    }
+    .logo {
+        padding-top: 2mm;
+        height: 17mm;
+        background-color: transparent;
+    }
+    .photos {
+        margin-top: -2mm;
+        height: 28mm;
+        width: 24mm;
+    }
+    .canvas_photo {
+        height: 28mm;
+        width: 24mm;
+        border-radius: 0.5mm;
+        background-color: rgba(255, 255, 255, 0.4);
+        position: absolute;
+    }
+    .photo {
+        position: absolute;
+        /*height: 28mm;*/
+        height: auto;
+        width: 24mm;
+        border-radius: 0.5mm;
+        background-color: transparent;
+    }
+    .card-body {
+        background-image: url("/cardjs/bg/P9220706.jpg");
+        background-position: center;
+        background-size: cover;
+        border-top-left-radius: 2.5mm;
+        border-top-right-radius: 2.5mm;
+        text-align: center;
+        color: white;
+        line-height: 1.1;
+    }
+    .document,
+    .gs,
+    .names {
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 10pt;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+    .role {
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 10pt;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+    .card-footer {
+        position: absolute;
+        display: flex;
+        font-size: 7.5pt;
+        padding: 14px;
+    }
+    #qrcode {
+        margin-right: 10px;
+    }
+    #barcode {
+        height: 20mm;
+        padding: 0;
+        margin-top: -0.5em;
+    }
+    .data {
+        margin-top: 1mm;
+        padding-bottom: 1mm;
+    }
+    .posterior {
+        padding: 5mm 8mm;
+    }
+    .dch {
+        font-size: 8pt;
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+    .dbr {
+        text-transform: uppercase;
+        font-size: 6.5pt;
+        font-weight: 700;
+        padding-top: 1mm;
+        line-height: 1.25;
+    }
+
+    .info {
+        margin-top: 1mm;
+    }
+
+    /*salto de pagina*/
+    div.saltopagina {
+        display: block;
+        height: 2em;
+    }
+    /*scrollbar*/
+    ::-webkit-scrollbar {
+        position: fixed;
+        width: 0.25em;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    ::-webkit-scrollbar-corner {
+        display: none;
+    }
+    form {
+        padding: 2% 5%;
+    }
+    nav {
+        position: fixed;
+        z-index: 9;
+    }
+    section {
+        position: absolute;
+        top: 7.5em;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow-y: scroll;
+        overflow-x: none;
+    }
+}
+@media print {
+    body,
+    center,
+    div,
+    html,
+    section {
+        position: relative;
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+    }
+    .centered {
+        padding: 0;
+        width: 0;
+        margin-left: 50%;
+        margin-top: 0;
+    }
+    div.saltopagina {
+        display: block;
+        height: 0;
+        page-break-before: always;
+        border: none;
+    }
+    #form,
+    #list,
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-button,
+    ::-webkit-scrollbar-corner,
+    ::-webkit-scrollbar-thumb,
+    ::-webkit-scrollbar-track,
+    br,
+    nav,
+    ul,
+    .preloader {
+        display: none;
+    }
+    #card {
+        display: block;
+        margin: 0;
+    }
+
+    .preview {
+        position: relative;
+        margin-left: -26.99mm;
+    }
+    .carnet {
+        position: relative;
+        background-color: white;
+        height: 84.6mm;
+        width: 53.98mm;
+        /* height: 1006px;
+        width: 640px; */
+        padding: 0;
+        display: inline-block;
+        font-family: Roboto;
+        line-height: 1;
+
+    }
+    .ven {
+        position: absolute;
+        font-size: 6pt;
+        text-transform: uppercase;
+        font-weight: bolder;
+        text-align: right;
+        transform: rotate(270deg);
+        left: 37mm;
+        width: 100px;
+        margin-top: 60px;
+        padding: 0;
+        /* text-shadow: 1px 1px rgba(0, 0, 0, 0.6); */
+    }
+    .logo {
+        padding-top: 1.5mm;
+        height: 17mm;
+        background-color: transparent;
+    }
+    .photos {
+        margin-top: 0;
+        height: 28mm;
+        width: 25mm;
+    }
+    .canvas_photo {
+        height: 28mm;
+        width: 24mm;
+        border-radius: 0.5mm;
+        background-color: rgba(255, 255, 255, 0.4);
+        position: absolute;
+    }
+    .photo {
+        position: absolute;
+        height: 28mm;
+        width: 24mm;
+        border-radius: 0.5mm;
+        background-color: transparent;
+    }
+    .card-body {
+        background-image: url("/cardjs/bg/P9220706.jpg");
+        padding: 0 0 1mm;
+        background-position: center;
+        background-size: cover;
+        text-align: center;
+        color: white;
+        line-height: 1.2;
+        border: none;
+    }
+    .document,
+    .gs,
+    .names {
+        text-transform: uppercase;
+        font-family: Roboto;
+        font-weight: 700;
+        font-size: 10pt;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+    .role {
+        text-transform: uppercase;
+        font-family: Roboto;
+        font-weight: 700;
+        font-size: 10pt;
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+    .card-footer {
+        height: 80px;
+        position: absolute;
+        display: flex;
+        font-size: 7.5pt;
+        padding: 14px;
+        vertical-align: middle;
+    }
+    #qrcode {
+        margin-right: 10px;
+    }
+    #barcode {
+        height: 20mm;
+        padding: 0;
+        margin-top: -0.5em;
+    }
+    .data {
+        margin-top: 1mm;
+        padding-bottom: 1mm;
+    }
+    .posterior {
+        padding: 6mm 8mm;
+    }
+    .dch {
+        font-size: 8pt;
+        text-transform: uppercase;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+    .dbr {
+        text-transform: uppercase;
+        font-size: 6.3pt;
+        font-weight: 700;
+        padding-top: 1mm;
+        line-height: 1.25;
+    }
+
+    .prints {
+        transform: rotate(180deg);
+    }
+
+    .info {
+        margin-top: 1mm;
+    }
+}

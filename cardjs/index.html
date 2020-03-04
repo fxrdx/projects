@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es-VE" ng-app="identitycard">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CARD.JS</title>
+        <script src="js/angular.min.js"></script><!--Los scripts de angular deben estar al principio para no generar conflicto con materialize y jquery-->
+        <script src="js/scripts/main.js"></script><!--aqui se escriben las funciones angular-->
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/materialicons.css">
+        <link rel="stylesheet" href="css/charts.css">
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+            #divFileUpload {
+                height: 140px;
+                width: 120px;
+                background-image: url(bg/avatar.jpg);
+                background-size: cover;
+                background-origin: center;
+            }
+        </style>
+    </head>
+    <body class="grey lighten-2" ng-controller="identitycard as card">
+        <nav class="nav-extended light-blue darken-1">
+
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo">
+                    <b>CARD.JS</b>
+                </a>
+
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a href="#">
+                            <i class="material-icons" ng-click="synch()">refresh</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                    </li>             
+                </ul>
+            </div>
+
+            <div class="nav-content container">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab">
+                        <a href="#form">Registro</a>
+                    </li>
+                    <li class="tab">
+                        <a href="#list">Empleados</a>
+                    </li>
+                    <li class="tab">
+                        <a class="active" href="#card">Carnet</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <li>
+                <a href="">Ajustes</a>
+            </li>
+        </ul>
+
+        <section>
+            <div class="container">
+<!--            <center class="preloader">
+                    <br>
+                    <div class="preloader-wrapper small active">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                </center>  -->
+
+                <div id="form" class="row">
+                    <div class="card white col l7 m7 s12">
+                        <form id="regEmployeed" class="row" enctype="multipart/form-data" ng-submit="send('reg', employeed); upload();">
+                            <h4 class="col s12">Perfil de Empleado</h4>
+
+                            <div id="divInputLoad" class="file-field input-field col s12">
+                                <div id="divFileUpload" class="waves-effect waves-light grey lighten-4">
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="8388608" />
+                                    <input id="file" name="file" type="file" accept="image/png">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" ng-model="employeed.photo" type="text">
+                                </div>
+                            </div>
+
+                            <div class="input-field col l6 m12 s12">
+                                <input ng-model="employeed.name" id="name" type="text" class="validate">
+                                <label for="name">Nombres</label>
+                            </div>
+
+                            <div class="input-field col l6 m12 s12">
+                                <input ng-model="employeed.lastname" name="lastname" type="text" class="validate">
+                                <label for="lastname">Apellidos</label>
+                            </div>
+
+                            <div class="input-field col l6 m5 s12">
+                                <select ng-model="employeed.country" id="country">
+                                    <option value="" disabled="disabled" selected="selected"></option>
+                                    <option value="E">Extranjero</option>
+                                    <option value="V">Venezolano</option>
+                                </select>
+                                <label>Nacionalidad</label>
+                            </div>
+
+                            <div class="input-field col l6 m7 s12">
+                                <input ng-model="employeed.identitycard" id="identitycard" type="text" class="validate">
+                                <label for="identitycard">Cédula / Pasaporte</label>
+                            </div>
+
+                            <div class="input-field col l6 m12 s12">
+                                <select ng-model="employeed.gender" id="gender">
+                                    <option value="" disabled="disabled" selected="selected"></option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
+                                <label>Género</label>
+                            </div>
+
+                            <div class="input-field col l6 m12 s12">
+                                <input ng-model="employeed.birthday" id="birthday" type="text" class="datepicker">
+                                <label for="birthday">Fecha de nacimiento</label>
+                            </div>
+
+                            <div class="input-field col l6 m6 s6">
+                                <select ng-model="employeed.blood_type" id="blood_type">
+                                    <option value="" disabled="disabled" selected="selected"></option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                                <label>Grupo Sanguineo</label>
+                            </div>
+
+
+                            <div class="input-field col l6 m6 s6">
+                                <select ng-model="employeed.rh_factor" id="rh_factor">
+                                    <option value="" disabled="disabled" selected="selected"></option>
+                                    <option value="1">+</option>
+                                    <option value="0">-</option>
+                                </select>
+                                <label>Factor RH</label>
+                            </div>
+
+                            <div class="input-field col l12 m12 s12">
+                                <input ng-model="employeed.hiredday" id="hiredday" type="text" class="datepicker">
+                                <label for="hiredday">Fecha de contratación</label>
+                            </div>
+
+                            <div class="input-field col l6 m12 s12">
+                                <select ng-model="employeed.departament" id="departament">
+                                    <option value="" disabled="disabled" selected="selected"></option>
+                                    <option value="sistemas">Sistemas</option>
+                                    <option value="Administracion">Administracion</option>
+                                </select>
+                                <label>Departamento</label>
+                            </div>
+
+                            <div class="input-field col l6 m12 s12">
+                                <select ng-model="employeed.role" id="role">
+                                    <option value="" disabled="disabled" selected="selected"></option>
+                                    <option value="0">Supervisor</option>
+                                    <option value="1">Jefe</option>
+                                    <option value="2">Empleado</option>
+                                </select>
+                                <label>Puesto</label>
+                            </div>
+
+                            <h4 class="col s12">Detalles de personal</h4>
+
+                            <div class="input-field col l8 m12 s12">
+                                <input ng-model="employeed.email" id="email" type="text" class="validate">
+                                <label for="email">E-mail</label>
+                            </div>
+
+                            <div class="input-field col l4 m12 s12">
+                                <input ng-model="employeed.mobile" id="mobile" type="text" class="validate">
+                                <label for="mobile">Número de celular</label>
+                            </div>
+
+                            <div class="input-field col l8 m12 s12">
+                                <input ng-model="employeed.homeaddress" id="homeaddress" type="text" class="validate">
+                                <label for="homeaddress">Dirección de residencia</label>
+                            </div>
+
+                            <div class="input-field col l4 m12 s12">
+                                <input ng-model="employeed.phone" id="phone" type="text" class="validate">
+                                <label for="phone">Teléfono de domicilio</label>
+                            </div>
+
+                            <div class="col s12">
+                                <button class="waves-effect waves-light btn blue darken-1" type="reset" ng-click="reset()"><i class="material-icons left">clear</i>Limpiar</button>&nbsp;
+                            	<button class="waves-effect waves-light btn blue darken-1" type="submit"><i class="material-icons left">send</i>registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="list" class="row">
+                    <ul class="collapsible row white">
+                        <li ng-repeat="liE in listEmployeed">
+                            <div class="collapsible-header">
+                                <i class="material-icons">account_box</i>
+                                {{ liE.name }} {{ liE.lastname }} / {{ liE.role }}
+                            </div>
+                            <div class="row collapsible-body">
+                                <div class="col l12 m12 s12">
+                                	<img id="photo2" width="120px" height="140px" src="uploads/{{ liE.photo }}" alt="{{ liE.name }}"><br>
+                                    código de empleado: <b>{{ liE.id_employeed }}</b><br>
+                                    nombres: <b>{{ liE.name }}</b><br>
+                                    apellidos: <b>{{ liE.lastname }}</b><br>
+                                    cédula: <b>{{ liE.identitycard }}</b><br>
+                                    genero: <b>{{ liE.gender }}</b><br>
+                                    fecha de nacimiento: <b>{{ liE.birthday }}</b><br>
+                                    departamento: <b>{{ liE.departament }}</b><br>
+                                    cargo: <b>{{ liE.role }}</b><br>
+                                    telefono: <b>{{ liE.phone }}</b>
+                                </div>
+                                <div class="col l12 m12 s12">
+                                    <br>
+                                    <a class="waves-effect waves-light btn blue darken-1"><i class="material-icons left">print</i>imprimir carnet</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                        <li class="active light-blue"><a href="#!">1</a></li>
+                        <li class="waves-effect"><a href="#!">2</a></li>
+                        <li class="waves-effect"><a href="#!">3</a></li>
+                        <li class="waves-effect"><a href="#!">4</a></li>
+                        <li class="waves-effect"><a href="#!">5</a></li>
+                        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    </ul>
+                </div>
+
+                <!--Carnet-->
+                <div id="card" class="row carnets">
+
+                    
+                    <!-- <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">search</i>
+                                    <input id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Search</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div> -->
+
+                    <div class="centered">
+                        <div class="preview" ng-repeat="liE in listEmployeed">
+                            <div class="carnet">
+                                <div class="card-body">
+                                    <!-- <span class="ven">vence jul 2020</span> -->
+                                    <center>
+                                        <img class="logo" src="bg/azureña.png" alt="azureña">
+                                        <br>
+                                    </center>
+                                    <center>
+                                        <div class="photos">
+                                            <div class="canvas_photo"></div>
+                                            <!-- <img class="photo" src="fotos/a7b08320-958c-40ce-9f6f-3a3f2b5fd316.png" alt="avatar"> -->
+                                            <!-- <img class="photo" src="photo/CARLOS.png" alt="avatar"> -->
+                                            <img class="photo" src="uploads/b731551faba27ac52eba26d9163a388f.png" alt="{{ name }}">
+                                        </div>
+                                    </center>
+                                    <center class="data"> 
+                                        <!--<div class="names">Jaime Londoño</div>
+                                        <div class="document">AN588363</div> -->
+                                        <!-- <div class="names">CARLOS CAÑIZALES</div> -->
+                                        <div class="names">{{  liE.name.split(' ')[0] }} {{ liE.lastname.split(' ')[0] }}</div> <!--  .split(' ')[0] se usa para tomar la primera palbara -->
+                                        <div class="document">{{ liE.identitycard }}</div>
+                                        <div class="gs">{{ liE.blood_type }}{{ liE.rh_factor.replace('1', '+') }}</div>
+                                        <div class="role">{{ liE.role.toUpperCase().replace('1', 'gerente general') }}</div>
+                                    </center>
+                                </div>
+                                <div class="card-footer">
+                                    <!-- <input id="text" type="hidden" value="NP00010"/> -->
+                                    <input id="text" type="hidden" value="NP00001"/>
+                                    <img id="qrcod" src="" alt="">
+                                    <div id="qrcode"></div>
+                                    <div class="info">Visita nuestro sitio web<br>
+                                        <b>www.azureña.caziactp</b>
+                                        <br>
+                                        y verifica la autenticidad<br>
+                                        de este carnet
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="saltopagina"></div>
+                            <div class="carnet prints">
+                                <div class="posterior">
+                                    <center class="dch">SE LE AGRADECE A LAS AUTORIDADES COMPETENTES PRESTAR SU
+                                        COLABORACIÓN AL PORTADOR DE ESTE CARNET PARA DESEMPEÑAR SUS FUNCIONES
+                                        PERTINENTES A SU CARGO
+                                    </center>
+                                    <br>
+                                    <center class="dbr">Esta tarjeta es propiedad de AZUREÑA CAZIACTP. Es personal e intransferible. Su uso esta sujeto a las condiciones establecidas en el contrato suscrito por las partes. En caso de perdida o extravío favor dirigirse a la oficina de recursos humanos AZUREÑA CAZIACTP
+                                    </center>
+                                </div>
+                                <div>
+                                    <input id="code" type="hidden" value="NP00001"/>
+                                    <center>
+                                        <img id="barcode"/>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        	</div>
+        </section>
+    </body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script src="js/JsBarcode.all.min.js"></script>
+	<script>
+        // qrcode
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width: 50,
+            height: 50,
+            colorDark: "black",
+            colorLight: "white",
+            correctLevel: QRCode.CorrectLevel.H,
+            useSVG: true
+        });
+
+        function makeCode() {
+            var elText = document.getElementById("text");
+            if (!elText.value) {
+                alert("erro qrcode");
+                elText.focus();
+                return;
+            }
+            qrcode.makeCode(elText.value);
+        }
+        makeCode();
+        // fin de qrcode
+
+        // barcode
+        $("#text")
+            .on("blur", function () {
+                makeCode();
+            })
+            .on("keydown", function (e) {
+                if (e.keyCode == 13) {
+                    makeCode();
+                }
+            });
+        var barcode = document
+            .getElementById("code")
+            .value;
+        JsBarcode("#barcode", barcode, {
+            // format: "EAN13",
+            displayValue: true,
+            fontSize: 20,
+            lineColor: 'black'
+        });
+        // fin barcode
+
+        // funciones materialized
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+
+        $(document).ready(function () {
+            $('.tabs').tabs();
+        });
+
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+        });
+
+        $(document).ready(function () {
+            $('.timepicker').timepicker();
+        });
+
+        $(document).ready(function () {
+            $('.scrollspy').scrollSpy();
+        });
+
+        $(document).ready(function () {
+            $('.collapsible').collapsible();
+        });
+
+        $(document).ready(function () {
+            $('.tap-target').tapTarget();
+        });
+
+        $(document).ready(function(){
+            $('.tooltipped').tooltip();
+        });
+        // fin materialized
+
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // var filePreview = document.createE lement('img');
+                    // filePreview.id = 'file-preview';
+                    //// e.target.result contents the base64 data from the image uploaded
+                    // filePreview.src = e.target.result;
+                    // console.log(e.target.result);
+                    // var previewZone = document.getElementById('file-preview-zone');
+                    document.getElementById('divFileUpload').style.backgroundImage = "url('"+e.target.result+"')";
+                    // previewZone.style.display = "block";
+                    // previewZone.appendChild(filePreview);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+     
+        var fileUpload = document.getElementById('file');
+        fileUpload.onchange = function(e) {
+            readFile(e.srcElement);
+        }
+    </script>
+</html>
