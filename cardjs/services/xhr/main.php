@@ -1,4 +1,5 @@
 <?php
+
     header("content-type: application/json; charset=utf-8");
     error_reporting(0);
 
@@ -21,7 +22,6 @@
         $outp = array('code'=>$errno,"error"=>$error); // sin espesificar el codigo de error no solucionado
         $outp = json_encode($outp);
         echo utf8_encode($outp);
-        //exit();
         die();
                 
     } if ($error == false) {

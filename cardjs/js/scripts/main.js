@@ -38,11 +38,11 @@ var app = angular.module('identitycard', [])
 
     /*$http.get("./js/scripts/errno.json").then(function(response) {
         $error = response.data.errno;
-    });
+    });*/
 
     $http.get("./js/scripts/alerts.json").then(function(response) {
         $alert = response.data.alert;
-    });*/
+    });
 
     $scope.upload = function() {
         formData = new FormData(document.getElementById("regEmployeed"));
@@ -74,11 +74,11 @@ var app = angular.module('identitycard', [])
             } else {
                 if (xhr.code == 1048 && xhr.code != 2) { // el codigo de error debe ser distinto de 1048 y 2
                     $scope.bug(xhr);
-                    if (confirm("La informacion del error ya fue enviada a nuestro laboratorio, para ayudarnos a solucionar deja un comentario acerca del error")) {
-                        $commentary = prompt("Bien ahora puedes decirnos tu opinion");
+                    if (confirm($alert[0].txt)) {
+                        $commentary = prompt($alert[4].txt);
                         if ($commentary !== null) {
                             if ($commentary.toLowerCase() == "") {
-                                alert("No comentaste, entendemos que no tienes tiempo, esperamos resolver tu inconveniente lo mas pronto posible");
+                                alert($alert[1].txt);
                              } if ($commentary.toLowerCase() != "") {
                                 $commentary = {
                                     "commentary": $commentary,
@@ -88,17 +88,17 @@ var app = angular.module('identitycard', [])
                                 $scope.comment($commentary);
                             } 
                         } else { 
-                            alert('tu opinion es importante nos ayuda a resolver los fallos con mas precision y en menos tiempo, agradecemos que te hayas detenido a leer estas ventanas');
+                            alert($alert[5].txt);
                         }
                     } else {
-                        alert("Ok, entendemos que no tienes tiempo para comentar, esperamos resolver tu inconveniente lo mas pronto posible");
+                        alert($alert[2].txt);
                     }
                 } else {
                     $scope.bug(xhr);
                 }
             }
         }, function(response) {
-            console.log('get method does not work, contact your network administrator');
+            alert($alert[3].txt);
         });
     };
 
@@ -116,8 +116,8 @@ var app = angular.module('identitycard', [])
             $scope.listEmployeed = xhr.listEmployeed;
             $scope.listDepartament = xhr.listDepartament;
             $scope.listRole = xhr.listRole;
-            x = document.getElementById("text");
-            x.value = '16';
+            // x = document.getElementById("text");
+            // x.value = '16';
         }, function(response) {
             console.log('get method does not work, contact your network administrator');
         });

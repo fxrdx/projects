@@ -3,14 +3,20 @@
         "0":{
             "txt":"La informacion del error ya fue enviada a nuestro laboratorio, para ayudarnos a solucionar deja un comentario acerca del error"
         },
-        "0":{
+        "1":{
             "txt":"No comentaste, entendemos que no tienes tiempo, esperamos resolver tu inconveniente lo mas pronto posible"
         },
-        "1":{ 
+        "2":{ 
             "txt":"Ok, entendemos que no tienes tiempo para comentar, esperamos resolver tu inconveniente lo mas pronto posible"
         },
-        "2":{
+        "3":{
             "txt":"get method does not work, contact your network administrator"
+        },
+        "4":{
+            "txt":"Bien ahora puedes decirnos tu opinion"
+        },
+        "5":{
+            "txt":"tu opinion es importante nos ayuda a resolver los fallos con mas precision y en menos tiempo, agradecemos que te hayas detenido a leer estas ventanas"
         }
     }
 }    

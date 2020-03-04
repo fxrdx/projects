@@ -257,20 +257,20 @@
                         <li ng-repeat="liE in listEmployeed">
                             <div class="collapsible-header">
                                 <i class="material-icons">account_box</i>
-                                {{ liE.name }} {{ liE.lastname }} / {{ liE.role }}
+                                {{  liE.name.split(' ')[0] }} {{ liE.lastname.split(' ')[0] }} / {{ liE.role }}
                             </div>
                             <div class="row collapsible-body">
                                 <div class="col l12 m12 s12">
                                 	<img id="photo2" width="120px" height="140px" src="uploads/{{ liE.photo }}" alt="{{ liE.name }}"><br>
                                     código de empleado: <b>{{ liE.id_employeed }}</b><br>
-                                    nombres: <b>{{ liE.name }}</b><br>
-                                    apellidos: <b>{{ liE.lastname }}</b><br>
-                                    cédula: <b>{{ liE.identitycard }}</b><br>
-                                    genero: <b>{{ liE.gender }}</b><br>
-                                    fecha de nacimiento: <b>{{ liE.birthday }}</b><br>
-                                    departamento: <b>{{ liE.departament }}</b><br>
-                                    cargo: <b>{{ liE.role }}</b><br>
-                                    telefono: <b>{{ liE.phone }}</b>
+                                    nombres: {{ liE.name }}<br>
+                                    apellidos: {{ liE.lastname }}<br>
+                                    cédula: {{ liE.identitycard }}<br>
+                                    genero: {{ liE.gender }}<br>
+                                    fecha de nacimiento: {{ liE.birthday }}<br>
+                                    departamento: {{ liE.departament }}<br>
+                                    cargo: {{ liE.role }}<br>
+                                    telefono: {{ liE.phone }}
                                 </div>
                                 <div class="col l12 m12 s12">
                                     <br>
